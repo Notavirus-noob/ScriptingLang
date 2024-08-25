@@ -13,6 +13,12 @@ function displayErrorMessage($error,$index){
     }
     return false;
 }
+function displaySuccessMessage($error,$index){
+    if (array_key_exists($index,$error)) {
+        return "<span class='success'>" . $error[$index] . " </span>";
+    }
+    return false;
+}
 
 function matchPattern($var,$pattern){
     if (preg_match($pattern,$var)) {
@@ -64,4 +70,53 @@ function printStatus($status)  {
         return 'DeActive';
     }
 }
+
+function getBookCategoryById($id){
+    try {
+        $cdate = date('Y-m-d H:i:s');
+        $connect = new mysqli('localhost','root','','book_collection');
+        $sql = "select * from book_category where id=$id";
+        $result = $connect->query($sql);
+        if ($result->num_rows == 1) {
+            $recordsed= $result->fetch_assoc();
+            return $recordsed;
+        }
+        return false;
+    } catch (\Throwable $th) {
+       die('Error: ' . $th->getMessage());
+    }
+}
+
+
+function deleteCategory($id){
+    try {
+        $connect = new mysqli('localhost','root','','book_collection');
+        $sql = "delete from book_category where id=$id";
+        $connect->query($sql);
+        if ($connect->affected_rows == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    } catch (\Throwable $th) {
+       die('Error: ' . $th->getMessage());
+    }
+}
+
+function updateCategory($id,$title,$rank,$status){
+    try {
+        $updated_at = date('Y-m-d H:i:s');
+        $connect = new mysqli('localhost','root','','book_collection');
+        $sql = "update book_category set title='$title',rank='$rank',status='$status',updated_at='$updated_at' where id=$id";
+        $connect->query($sql);
+        if ($connect->affected_rows == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    } catch (\Throwable $th) {
+       die('Error: ' . $th->getMessage());
+    }
+}
+
 ?>

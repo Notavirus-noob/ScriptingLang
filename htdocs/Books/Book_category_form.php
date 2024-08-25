@@ -17,9 +17,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
      
     if(count($err) == 0){
         if (addCategory($title,$rank,$status)) {
-           echo $err['success'] =  'Category add success';
+           $err['success'] =  'Category add success';
       } else {
-           echo $err['failed'] = 'Category add Failed';
+           $err['failed'] = 'Category add Failed';
       }
         
     }   
@@ -33,45 +33,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form Validation</title>
-    <style>
-        .form-group{
-            border-bottom: 1px solid green;
-            padding:10px;
-        }
-
-        .form-group label{
-            display:inline-block;
-            width:100px;
-        }
-
-        .form-group input{
-            width: 60%;
-        }
-        .form-group input[type='radio']{
-            width: 5%;
-        }
-
-        .form-group input[type=submit]{
-            width: 75px;
-            height:25px;
-            border:none;
-            background:#3366aa;
-            color:white;
-        }
-        .error{
-            color:red;
-            border-bottom: 1px red dashed;
-        }
-
-
-        .success{
-            color:green;
-            border-bottom: 1px green dashed;
-        }
-    </style>
+    
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
- <h1>Book Category</h1>   
+    <?php  echo displayErrorMessage($err,'failed')?>
+    <?php  echo displaySuccessMessage($err,'success')?>
+ <h1>Book Category</h1> 
+    <a href="display_category.php">Book Category List</a>
  <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post" enctype="multipart/form-data">
     <fieldset>
         <legend>Genre</legend>
