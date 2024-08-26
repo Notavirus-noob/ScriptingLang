@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 *{
     margin: 0;
     padding: 0;
@@ -47,4 +48,55 @@ a{
 }
 .form-group input[type=submit]{
     width: 100%;
+=======
+*{
+    margin: 0;
+    padding: 0;
+    
+    
+}
+body{
+    background: #979595;
+}
+a{
+    text-decoration: none;
+
+}
+.form-group{
+    border-bottom: 1px solid green;
+    padding:10px;
+}
+
+.form-group label{
+    display:inline-block;
+    width:100px;
+}
+
+.form-group input{
+    width: 60%;
+}
+.form-group input[type='radio']{
+    width: 5%;
+}
+
+.form-group input[type=submit]{
+    width: 75px;
+    height:25px;
+    border:none;
+    background:#3366aa;
+    color:white;
+}
+.error{
+    color:red;
+    border-bottom: 1px red dashed;
+}
+
+
+.success{
+    color:green;
+    border-bottom: 1px green dashed;
+}
+.form-group input[type=submit]{
+    width: 100%;
+>>>>>>> d3b2df20700f21418dda270a8e6e45e6d65a1528
 }
