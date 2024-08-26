@@ -1,6 +1,7 @@
 <?php
+
 function checkRequiredField($index){
-    if (isset($_POST[$index]) && !empty($_POST[$index]) && trim($_POST[$index])) {
+    if (isset($_POST[$index]) && !empty($_POST[$index]) && trim($_POST[$index]) && htmlspecialchars($index)) {
         return true;
     } else {
         return false;
@@ -26,12 +27,20 @@ function matchPattern($var,$pattern){
     }
     return false;
 }
-function addCategory($title,$rank,$status){
+function dateType($dob){
+
+}
+function addStudents($name,$course,$fee,$rollno,$address,$dob,$status){
     try{
         $connection = mysqli_connect('localhost','root','','book_collection');
         //insert query
-        $insertsql = "insert into book_category(title,rank,status) 
-        values ('$title',$rank,$status)";
+        $newdob=explode('-',$dob);
+        $year = $newdob[0];
+        $month = $newdob[1];
+        $day = $newdob[2];
+        $newdate= $year . '-' . $month . '-' . $day;
+        $insertsql = "insert into students(name,course,fee,rollno,address,dob,status) 
+        values ('$name','$course',$fee,$rollno,'$address',STR_TO_DATE('$newdate', '%Y-%m-%d'),$status)";
         mysqli_query($connection,$insertsql);
         if ($connection->insert_id > 0 && $connection->affected_rows == 1) {
             return true;
@@ -49,7 +58,7 @@ function getAllBookCategory(){
         // $cdate = date('Y-m-d H:i:s');
         $connect = new mysqli('localhost','root','','book_collection');
         //select query
-        $sql = "select * from book_category";
+        $sql = "select * from students";
         $result = $connect->query($sql);
         $data = [];
         if ($result->num_rows > 0) {
@@ -71,11 +80,11 @@ function printStatus($status)  {
     }
 }
 
-function getBookCategoryById($id){
+function getStudentById($id){
     try {
         $cdate = date('Y-m-d H:i:s');
         $connect = new mysqli('localhost','root','','book_collection');
-        $sql = "select * from book_category where id=$id";
+        $sql = "select * from students where id=$id";
         $result = $connect->query($sql);
         if ($result->num_rows == 1) {
             $recordsed= $result->fetch_assoc();
@@ -88,10 +97,10 @@ function getBookCategoryById($id){
 }
 
 
-function deleteCategory($id){
+function deleteStudent($id){
     try {
         $connect = new mysqli('localhost','root','','book_collection');
-        $sql = "delete from book_category where id=$id";
+        $sql = "delete from students where id=$id";
         $connect->query($sql);
         if ($connect->affected_rows == 1) {
             return true;
@@ -103,11 +112,11 @@ function deleteCategory($id){
     }
 }
 
-function updateCategory($id,$title,$rank,$status){
+function updateStudent($id,$name,$course,$fee,$rollno,$address,$dob,$status){
     try {
         $updated_at = date('Y-m-d H:i:s');
         $connect = new mysqli('localhost','root','','book_collection');
-        $sql = "update book_category set title='$title',rank='$rank',status='$status',updated_at='$updated_at' where id=$id";
+        $sql = "update students set name='$name',course='$course',fee=$fee,rollno=$rollno,address='$address',dob='$dob',status='$status',updated_at='$updated_at' where id=$id";
         $connect->query($sql);
         if ($connect->affected_rows == 1) {
             return true;

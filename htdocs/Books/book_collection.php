@@ -45,6 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else {
         $err['price'] = 'Enter price';
     }
+
     
 
     $status = $_POST['status'];
@@ -70,42 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form Validation</title>
-    <style>
-        .form-group{
-            border-bottom: 1px solid green;
-            padding:10px;
-        }
-
-        .form-group label{
-            display:inline-block;
-            width:100px;
-        }
-
-        .form-group input{
-            width: 60%;
-        }
-        .form-group input[type='radio']{
-            width: 5%;
-        }
-
-        .form-group input[type=submit]{
-            width: 75px;
-            height:25px;
-            border:none;
-            background:#3366aa;
-            color:white;
-        }
-        .error{
-            color:red;
-            border-bottom: 1px red dashed;
-        }
-
-
-        .success{
-            color:green;
-            border-bottom: 1px green dashed;
-        }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
  <h1>Book Collection</h1>   

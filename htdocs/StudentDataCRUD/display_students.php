@@ -2,8 +2,8 @@
 require_once 'function.php';
 $err = [];
 if (isset($_GET['delid']) && is_numeric($_GET['delid'])) {
-    if (getBookCategoryById($_GET['delid'])) {
-        if(deleteCategory($_GET['delid'])){
+    if (getStudentById($_GET['delid'])) {
+        if(deleteStudent($_GET['delid'])){
             $err['success'] =  'Category deleted success';
         } else {
             $err['failed'] = 'Category delete Failed';
@@ -31,14 +31,18 @@ $records = getAllBookCategory();
     <h1 align="center">List Book Category</h1>
     <center>
         <button class="btn btn-success m-2">
-            <a href="Book_Category_form.php" class="text-light no-decor ">Add Category</a>
+            <a href="student_det_form.php" class="text-light no-decor ">Add Student detail</a>
         </button>
     </center>
     <table width="100%" border="1" class=" table table-bordered">
         <tr>
             <th>Sn</th>
-            <th>Title</th>
-            <th>Rank</th>
+            <th>Name</th>
+            <th>Course</th>
+            <th>fee</th>
+            <th>roll no</th>
+            <th>address</th>
+            <th>date of birth</th>
             <th>Status</th>
             <th>Created at</th>
             <th>Updated at</th>
@@ -48,14 +52,18 @@ $records = getAllBookCategory();
         <?php foreach ($records as $key => $record) { ?>
             <tr >
                 <td><?php echo $key+1 ?></td>
-                <td><?php echo $record['title']?></td>
-                <td><?php echo $record['rank']?></td>
+                <td><?php echo $record['name']?></td>
+                <td><?php echo $record['course']?></td>
+                <td><?php echo $record['fee']?></td>
+                <td><?php echo $record['rollno']?></td>
+                <td><?php echo $record['address']?></td>
+                <td><?php echo $record['dob']?></td>
                 <td><?php echo printStatus($record['status'])?></td>
                 <td><?php echo $record['created_at']?></td>
                 <td><?php echo $record['updated_at']?></td>
                 <td>
-                    <a class="btn btn-primary" href="edit_category.php?edtid=<?php echo $record['id'] ?>">Edit</a>
-                    <a class="btn btn-danger" href="display_category.php?delid=<?php echo $record['id'] ?>">Delete</a>
+                    <a class="btn btn-primary" href="edit_students.php?edtid=<?php echo $record['id'] ?>">Edit</a>
+                    <a class="btn btn-danger" href="display_students.php?delid=<?php echo $record['id'] ?>">Delete</a>
                 </td>
             </tr>
         <?php } ?>
