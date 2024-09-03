@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subjects</title>
+</head>
+<body>
+    <script>
+        
+        var sl=Number(prompt("Enter the mark of Scripting Language:"));
+        var os=Number(prompt("Enter the mark of Operating System:"));
+        var nm=Number(prompt("Enter the mark of Numerical Method:"));
+        var se=Number(prompt("Enter the mark of Software Engineering:"));
+        var dbms=Number(prompt("Enter the mark of Database Management:"));
+        if(sl<40 || os<40|| nm<40 ||se<40|| dbms<40 ){
+            alert("Failed!!!");
+        }else{
+            var average = (sl+os+nm+se+dbms)/5;
+            document.write("Average= "+ average);
+            var percentage= ((sl+os+nm+se+dbms)/500)*100;
+            document.write("<br>"+"Percentage = "+ percentage);
+            if (percentage<50){
+                document.write("<br>"+"3nd Division");
+            } else if (percentage<70) {
+                document.write("<br>"+"2nd Division");
+            } else if(percentage<80) {
+                document.write("<br>"+"1nd Division");
+            } else {
+                document.write("<br>"+"Distinction");
+            }
+
+
+        }
+    </script>
+</body>
+</html>
