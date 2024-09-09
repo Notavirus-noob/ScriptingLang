@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DOM Counter</title>
+</head>
+<body>
+    <center>
+        <button id="decrement" onclick="decrease()">-</button>
+        <span id="counter">0</span>
+        <button id="increment" onclick="increase()">+</button>
+        <button id="reset" onclick="reset()">Reset</button>        
+    </center>
+
+  <script>
+    const counterElement = document.getElementById('counter');
+    const incrementButton = document.getElementById('increment');
+    const decrementButton = document.getElementById('decrement');
+    const resetButton = document.getElementById('reset');
+
+    let count = 0;
+
+    function updateCounter() {
+      counterElement.textContent = count;
+    }
+    function increase(){
+        count++;
+        updateCounter();
+    }
+    function decrease(){
+        count--;
+        updateCounter();
+    }
+    function reset(){
+        count = 0;
+        updateCounter();
+    }
+  </script>
+</body>
+</html>
